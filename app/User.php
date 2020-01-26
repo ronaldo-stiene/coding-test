@@ -6,25 +6,47 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+/**
+ * -----------------------------------------------------------------------
+ * Usuário
+ * -----------------------------------------------------------------------
+ * 
+ * Este modelo contém as informações dos usuários da aplicação.
+ */
 class User extends Authenticatable
 {
+
     use Notifiable;
 
     /**
-     * The attributes that are mass assignable.
+     * Indica se o modelo terá a columa timestamps.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
+
+    /**
+     * Informa os campos que podem ser preenchidos do modelo.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'nome', 'email', 'senha',
     ];
 
     /**
-     * The attributes that should be hidden for arrays.
+     * Os atributos que devem ser ocultos aos arrays.
      *
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'senha', 'remember_token',
     ];
+
+    /**
+     * Informa o nome da tabela deste modelo.
+     *
+     * @var string
+     */
+    protected $table = 'usuarios';
 }
