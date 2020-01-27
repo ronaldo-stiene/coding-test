@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Services\ProdutoImagemSaver;
+use App\Http\Services\ProdutoMaker;
 use App\Models\Produto;
 use Illuminate\Database\Seeder;
+use Illuminate\Http\UploadedFile;
 
 /**
  * -----------------------------------------------------------------------
@@ -32,13 +35,15 @@ class ProdutosSeeder extends Seeder
     /**
      * Realiza a inserção dos dados dos produtos manualmente, onde:
      * - Os nomes são pré-definidos e organizados em categorias dentro de um array.
+     * - A imagem é copiada de /storage/app/img/ para /storage/app/public/img/.
+     * - A cópia das imagens irá mostrar um progresso em porcentagem no console.
      * - O nome da imagem é gerado ao transformar o nome original com letras minusculas e sem acentos.
      * - O fornecedor é definido pelo o ID do array de cada produto.
      * - A quantidade é gerada aleatóriamente.
      *
      * @return void
      */
-    private function manualSeed()
+    private function manualSeed(): void
     {
         $produtos = [
             ['Maçã Fuji', 'Banana Prata', 'Mamão Papaia', 'Morango', 'Uva Niagara Roxa', 'Uva Itália Verde', 'Abacaxi'],
@@ -55,35 +60,25 @@ class ProdutosSeeder extends Seeder
             'Chocolate Bis Lacta', 'Caixa de Bombons Lacta', 'Bala de Gelatina Tubes Fini', 'Chocolate Nestlé Kit Kat']
         ];
 
+        $imagensSalvas = 0;
         foreach ($produtos as $fornecedor => $tipos) {
             foreach ($tipos as $nome) {
-                $produto = Produto::create([
-                    'nome' => $nome,
-                    'imagem' => strtolower( $this->removerAcentos($nome) ) . ".jpg",
-                    'quantidade' => rand(0,15),
-                    'fornecedor_id' => $fornecedor,
-                ]);
-                $produto->save();
+                $nomeDaImagem = Produto::gerarNomeDaImagem($nome);
+                $caminhoDaImagem = storage_path('app/img/') . $nomeDaImagem;
+                $imagem = new UploadedFile($caminhoDaImagem, $nomeDaImagem);
+                $imagensSalvas++;
+
+                echo "Salvando imagens dos produtos: " . number_format( (($imagensSalvas / 58) * 100), 0 ) . "%\r";
+
+                $maker = new ProdutoMaker();
+                $maker->criarProduto(
+                    $nome,
+                    $imagem,
+                    $fornecedor + 1,
+                    rand(0, 15)
+                );
             }
         }
-    }
-
-    /**
-     * Função que remove os acentos de uma string.
-     *
-     * @param string $string
-     * @return string
-     * 
-     * @author Tiago
-     * @author Ronaldo Stiene <rstiene27@gmail.com>
-     * @source https://www.linhadecomando.com/php/php-funcao-para-retirar-acentos
-     */
-    function removerAcentos($string)
-    {
-        $acentos  =  'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿŔŕ';
-        $sem_acentos  =  'aaaaaaaceeeeiiiidnoooooouuuuybsaaaaaaaceeeeiiiidnoooooouuuyybyRr';
-        $string = strtr(utf8_decode($string), utf8_decode($acentos), $sem_acentos);
-        $string = str_replace(" ", "", $string);
-        return utf8_decode($string);
+        echo "\033[K";
     }
 }

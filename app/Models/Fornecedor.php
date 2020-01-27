@@ -30,7 +30,7 @@ class Fornecedor extends Model
      *
      * @var array
      */
-    protected $fillable = ['nome', 'telefone'];
+    protected $fillable = ['nome', 'telefone', 'endereco_id'];
 
     /**
      * Informa o nome da tabela deste modelo.
@@ -50,12 +50,12 @@ class Fornecedor extends Model
     }
 
     /**
-     * Definição do relacionamento One To One com o modelo Endereço.
+     * Retorna o endereço do fornecedor.
      *
-     * @return void
+     * @return Endereco
      */
-    public function endereco()
+    public function getEndereco(): Endereco
     {
-        return $this->hasOne(Endereco::class);
+        return Endereco::find($this->endereco_id);
     }
 }

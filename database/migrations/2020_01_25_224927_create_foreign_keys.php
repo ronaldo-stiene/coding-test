@@ -9,7 +9,7 @@ use Illuminate\Database\Migrations\Migration;
  * Cria a as chaves estrangeiras
  * -----------------------------------------------------------------------
  * 
- * Cria as chaves estrangeiras das tabelas "funcionarios", "produtos", "enderecos".
+ * Cria as chaves estrangeiras das tabelas "fornecedores", "produtos".
  * 
  * @author Ronaldo Stiene <rstiene27@gmail.com>
  */
@@ -31,10 +31,6 @@ class CreateForeignKeys extends Migration
             $table->unsignedInteger('fornecedor_id');
             $table->foreign('fornecedor_id')->references('id')->on('fornecedores');
         });
-        Schema::table('enderecos', function (Blueprint $table) {
-            $table->unsignedInteger('fornecedor_id');
-            $table->foreign('fornecedor_id')->references('id')->on('fornecedores');
-        });
     }
 
     /**
@@ -48,9 +44,6 @@ class CreateForeignKeys extends Migration
             $table->dropForeign('endereco_id');
         });
         Schema::table('produtos', function (Blueprint $table) {
-            $table->dropForeign('fornecedor_id');
-        });
-        Schema::table('enderecos', function (Blueprint $table) {
             $table->dropForeign('fornecedor_id');
         });
     }

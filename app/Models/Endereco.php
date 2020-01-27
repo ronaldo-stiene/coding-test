@@ -39,12 +39,12 @@ class Endereco extends Model
     protected $table = 'enderecos';
 
     /**
-     * Definição do relacionamento One To Many com o modelo Fornecedor.
+     * Retorna o fornecedor que possuí este endereço.
      *
-     * @return void
+     * @return Fornecedor
      */
-    public function fornecedor()
+    public function getFornecedor(): Fornecedor
     {
-        return $this->belongsTo(Fornecedor::class);
+        return Fornecedor::where('endereco_id', $this->id)->get();
     }
 }

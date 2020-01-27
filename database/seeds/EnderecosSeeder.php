@@ -31,7 +31,7 @@ class EnderecosSeeder extends Seeder
      *
      * @return void
      */
-    private function manualSeed()
+    private function manualSeed(): void
     {
         DB::table('enderecos')->insert([
             [
@@ -42,7 +42,6 @@ class EnderecosSeeder extends Seeder
                 'bairro' => 'Jardim das Oliveiras',
                 'cidade' => 'São Paulo',
                 'estado' => 'SP',
-                'fornecedor_id' => 1,
             ],
             [
                 'cep' => '31560-160',
@@ -52,7 +51,6 @@ class EnderecosSeeder extends Seeder
                 'bairro' => 'Santa Amélia',
                 'cidade' => 'Belo Horizonte',
                 'estado' => 'Minas Gerais',
-                'fornecedor_id' => 2,
             ],
             [
                 'cep' => '17051-240',
@@ -62,7 +60,6 @@ class EnderecosSeeder extends Seeder
                 'bairro' => 'Jardim de Allah',
                 'cidade' => 'Bauru',
                 'estado' => 'São Paulo',
-                'fornecedor_id' => 3,
             ],
             [
                 'cep' => '74553-610',
@@ -72,7 +69,6 @@ class EnderecosSeeder extends Seeder
                 'bairro' => 'Vila Perdiz',
                 'cidade' => 'Goiânia',
                 'estado' => 'Goiás',
-                'fornecedor_id' => 4,
             ],
             [
                 'cep' => '29052-120',
@@ -82,7 +78,6 @@ class EnderecosSeeder extends Seeder
                 'bairro' => 'Praia do Suá',
                 'cidade' => 'Vitória',
                 'estado' => 'Espírito Santo',
-                'fornecedor_id' => 5,
             ],
             [
                 'cep' => '88110-200',
@@ -92,7 +87,6 @@ class EnderecosSeeder extends Seeder
                 'bairro' => 'Barreiros',
                 'cidade' => 'São José',
                 'estado' => 'Santa Catarina',
-                'fornecedor_id' => 6,
             ],
             [
                 'cep' => '41750-420',
@@ -102,7 +96,6 @@ class EnderecosSeeder extends Seeder
                 'bairro' => 'Armação',
                 'cidade' => 'Salvador',
                 'estado' => 'Bahia',
-                'fornecedor_id' => 7,
             ]
         ]);
     }

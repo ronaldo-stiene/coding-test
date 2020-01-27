@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(FornecedoresSeeder::class);
         $this->call(ProdutosSeeder::class);
-        $this->call(EnderecosSeeder::class);
+        // $this->call(EnderecosSeeder::class);
         
         Schema::enableForeignKeyConstraints();
     }

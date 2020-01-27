@@ -23,7 +23,7 @@ class FornecedoresSeeder extends Seeder
     public function run()
     {
         // Dados gerados pela fábrica.
-        factory(Fornecedor::class, 7)->create();
+        factory(Fornecedor::class, 8)->create();
 
         // Criação dos dados manualmente.
         // $this->manualSeed();
@@ -34,7 +34,7 @@ class FornecedoresSeeder extends Seeder
      *
      * @return void
      */
-    private function manualSeed()
+    private function manualSeed(): void
     {
         DB::table('fornecedores')->insert([
             [

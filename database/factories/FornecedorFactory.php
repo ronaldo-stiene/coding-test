@@ -24,7 +24,7 @@ $factory->define(Fornecedor::class, function (Faker $faker) {
     $faker->addProvider(new BrPhoneNumber($faker));
     return [
         'nome' => $faker->company,
-        'telefone' => $faker->cellphoneNumber,
+        'telefone' => $faker->phoneNumberCleared,
         'endereco_id' => function () {
             return factory(App\Models\Endereco::class)->create()->id;
         }
