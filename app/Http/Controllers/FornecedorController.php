@@ -20,6 +20,7 @@ use App\Http\Requests\FornecedorFormRequest;
  * os fornecedores.
  * 
  * @author Ronaldo Stiene <rstiene27@gmail.com>
+ * @since 26/01/2020
  */
 class FornecedorController extends Controller
 {
@@ -89,7 +90,12 @@ class FornecedorController extends Controller
      */
     public function destroy(Request $request, FornecedorDestroyer $destroyer): RedirectResponse
     {
-        $nome = $destroyer->removerFornecedor($request->id);
-        return redirect()->route('home');
+        try {
+            $nome = $destroyer->removerFornecedor($request->id);
+            return redirect()->route('home');
+        } catch (\Throwable $t) {
+            return redirect()->route('home')
+                ->withErrors($t->getMessage());
+        }
     }
 }

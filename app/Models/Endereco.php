@@ -14,8 +14,9 @@ use Illuminate\Database\Eloquent\Model;
  * relacionamento One To One.
  * 
  * @author Ronaldo Stiene <rstiene27@gmail.com>
+ * @since 25/01/2020
  */
-class Endereco extends Model
+    class Endereco extends Model
 {
     /**
      * Indica se o modelo terá a columa timestamps.
@@ -45,6 +46,6 @@ class Endereco extends Model
      */
     public function getFornecedor(): Fornecedor
     {
-        return Fornecedor::where('endereco_id', $this->id)->get();
+        return Fornecedor::where('endereco_id', $this->id)->first();
     }
 }
