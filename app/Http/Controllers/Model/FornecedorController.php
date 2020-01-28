@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Model;
 
+use App\Http\Controllers\Controller;
 use App\Models\Fornecedor;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -32,13 +33,22 @@ class FornecedorController extends Controller
      */
     public function index(Request $request): View
     {
-        if ($request->id) {
-            $fornecedor = Fornecedor::find($request->id);
-            return view('index', compact('fornecedor'));
-        }
-
         $fornecedores = Fornecedor::all();
-        return view('index', compact('fornecedores'));
+
+        return view('site.fornecedores', compact('fornecedores'));
+    }
+
+    /**
+     * Controla a listagem de um fornecedor.
+     *
+     * @param Request $request
+     * @return View
+     */
+    public function show(Request $request): View
+    {
+        $fornecedor = Fornecedor::find($request->id);
+
+        return view('site.fornecedor', compact('fornecedor'));
     }
 
     /**
@@ -51,6 +61,7 @@ class FornecedorController extends Controller
     public function create(FornecedorFormRequest $request, FornecedorMaker $maker): RedirectResponse
     {
         $validated = $request->validated();
+
         $fornecedor = $maker->criarFornecedor(
             $validated['nome'],
             $validated['telefone'],
@@ -63,6 +74,8 @@ class FornecedorController extends Controller
                 'estado' => $validated['estado']
             ]
         );
+
+        // @todo Exibir mensagem de sucesso.
 
         return redirect()->route('home');
     }
@@ -77,7 +90,11 @@ class FornecedorController extends Controller
     public function store(FornecedorFormRequest $request, FornecedorUpdater $updater): RedirectResponse
     {
         $validated = $request->validated();
-        $updater->atualizarFornecedor($request->id, $validated);
+
+        $fornecedor = $updater->atualizarFornecedor($request->id, $validated);
+
+        // @todo Exibir mensagem de sucesso.
+
         return redirect()->route('home');
     }
 
@@ -91,11 +108,18 @@ class FornecedorController extends Controller
     public function destroy(Request $request, FornecedorDestroyer $destroyer): RedirectResponse
     {
         try {
+
             $nome = $destroyer->removerFornecedor($request->id);
+
+            // @todo Exibir mensagem de sucesso.
+
             return redirect()->route('home');
-        } catch (\Throwable $t) {
+
+        } catch (\Exception $e) {
+
             return redirect()->route('home')
-                ->withErrors($t->getMessage());
+                ->withErrors($e->getMessage());
+
         }
     }
 }
