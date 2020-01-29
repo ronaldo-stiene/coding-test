@@ -1,0 +1,72 @@
+/**
+ * -----------------------------------------------------------------------
+ * Tamanhos Personalizados
+ * -----------------------------------------------------------------------
+ * 
+ * @author Ronaldo Stiene <rstiene27@gmail.com>
+ * @since 29/01/2020
+ */
+
+
+/*************************************\
+|*              Tamanhos             *|
+\*************************************/
+
+/* Altura */
+.gg-h-6 {
+    height: 4em;
+}
+
+
+/*************************************\
+|*          Tamanhos Máximos         *|
+\*************************************/
+
+/* Máximo Geral */
+.gg-max-size-2 {
+    max-height: 50px;
+    max-width: 50px;
+}
+.gg-max-size-3 {
+    max-height: 90px;
+    max-width: 90px;
+}
+.gg-max-size-5 {
+    max-height: 150px;
+    max-width: 150px;
+}
+
+/* Altura Máxima */
+.gg-max-h-2 {
+    max-height: 50px;
+}
+.gg-max-h-3 {
+    max-height: 90px;
+}
+.gg-max-h-5 {
+    max-height: 150px;
+}
+
+/* Largura Máxima */
+.gg-max-w-2 {
+    max-width: 50px;
+}
+.gg-max-w-3 {
+    max-width: 90px;
+}
+.gg-max-w-5 {
+    max-width: 150px;
+}
+
+
+/*************************************\
+|*          Tamanhos Mínimos         *|
+\*************************************/
+
+/* Altura Mínima */
+.gg-h-5 {
+    min-height: 5em;
+}
+.gg-h-7 {
+    min-height: 10em;
+}

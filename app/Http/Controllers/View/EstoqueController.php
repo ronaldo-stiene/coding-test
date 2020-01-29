@@ -7,6 +7,7 @@ use App\Http\Requests\EstoqueFormRequest;
 use App\Models\Produto;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 /**
@@ -30,6 +31,8 @@ class EstoqueController extends Controller
      */
     public function index(Request $request): View
     {
-        return view('site.estoque');
+        $produtos = Produto::paginate(15);
+        $visualizacao = ($request->view) ? $request->view : 'detalhes';
+        return view('site.estoque', compact('produtos', 'visualizacao'));
     }
 }

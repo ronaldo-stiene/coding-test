@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Hash;
 
 /**
  * -----------------------------------------------------------------------
@@ -12,6 +13,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * -----------------------------------------------------------------------
  * 
  * Este modelo contém as informações dos usuários da aplicação.
+ * 
+ * @author Ronaldo Stiene <rstiene27@gmail.com>
+ * @since 29/01/2020
  */
 class User extends Authenticatable
 {
@@ -31,7 +35,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'nome', 'email', 'senha',
+        'name', 'email', 'password', 'admin'
     ];
 
     /**
@@ -44,9 +48,30 @@ class User extends Authenticatable
     ];
 
     /**
-     * Informa o nome da tabela deste modelo.
+     * Altera a senha do usuário.
      *
-     * @var string
+     * @param string $senha
+     * @param string $confirmacao
+     * @return void
      */
-    protected $table = 'usuarios';
+    public function alterarSenha(string $senha, string $confirmacao): void
+    {
+        if ($senha !== $confirmacao) {
+            throw new \Exception("As senhas não correspondem", 1);
+        }
+        $this->password = Hash::make($senha);
+        $this->save();
+    }
+
+    /**
+     * Redefine a senha do usuário.
+     *
+     * @param string $senha
+     * @return void
+     */
+    public function redefinirSenha(string $senha): void
+    {
+        $this->password = Hash::make($senha);
+        $this->save();
+    }
 }

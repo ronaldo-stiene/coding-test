@@ -11,9 +11,10 @@
 |
 */
 
-use App\Models\Fornecedor;
-use App\Models\Produto;
-use Illuminate\Http\Request;
+/**
+ * @author Ronaldo Stiene <rstiene27@gmail.com>
+ * @since 29/01/2020
+ */
 
 // Route::get('/', 'HomeController@index')->name('home');
 
@@ -47,59 +48,61 @@ use Illuminate\Http\Request;
 /**
  * Rota da página inicial.
  */
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'View\HomeController@index')->name('home');
 
 /**
  * Rota para o login e logout.
  */
-Route::post('/login', 'UserControler@login')->name('login');
-Route::get('/logout', 'UserControler@logout')->name('logout');
+Route::get('/login', 'Auth\UserControler@index')->name('login');
+Route::post('/login', 'Auth\UserControler@login')->name('login');
+Route::get('/logout', 'Auth\UserControler@logout')->name('logout');
 
 /**
  * Rota para alteração de dados do usuário.
  */
 Route::middleware('auth')->prefix('user')->group(function () {
 
-    Route::post('create', 'UserControler@create')->name('criar-user');
-    Route::post('', 'UserControler@store')->name('user');
-    Route::delete('', 'UserControler@delete')->name('user');
+    Route::post('', 'Auth\UserControler@store')->name('user');
+    Route::post('create', 'Auth\UserControler@create')->name('criar-user');
+    Route::post('reset/{id}', 'Auth\UserControler@reset')->name('redefinir-user');
+    Route::post('password', 'Auth\UserControler@passUpdate')->name('alterar-senha');
+    Route::delete('', 'Auth\UserControler@destroy')->name('user');
 
 });
 
 /**
  * Rota para o estoque
  */
-Route::get('/estoque', 'EstoqueController@index')->name('estoque');
+Route::get('/estoque', 'View\EstoqueController@index')->name('estoque');
 
 /**
  * Rota para os fornecedores
  */
-Route::get('/fornecedores', 'FornecedorController@index')->name('fornecedores');
+Route::get('/fornecedores', 'Model\FornecedorController@index')->name('fornecedores');
 
 Route::prefix('fornecedor')->group(function () {
-    Route::get('{id}', 'FornecedorController@show')->name('fornecedor');
+    Route::get('{id}', 'Model\FornecedorController@show')->name('fornecedor');
 
     Route::middleware('auth')->group(function () {
-        Route::post('criar', 'FornecedorController@create')->name('criar-fornecedor');
-        Route::post('{id}', 'FornecedorController@store')->name('fornecedor');
-        Route::delete('{id}', 'FornecedorController@destroy')->name('fornecedor');
+        Route::post('criar', 'Model\FornecedorController@create')->name('criar-fornecedor');
+        Route::post('{id}', 'Model\FornecedorController@store')->name('fornecedor');
+        Route::delete('{id}', 'Model\FornecedorController@destroy')->name('fornecedor');
     });
 });
 
 /**
  * Rota para os produtos
  */
-Route::get('/produtos', 'ProdutoController@index')->name('produtos');
+Route::get('/produtos', 'Model\ProdutoController@index')->name('produtos');
 
 Route::prefix('produto')->group( function () {
-    Route::get('{id}', 'ProdutoController@show')->name('produto');
+    Route::get('{id}', 'Model\ProdutoController@show')->name('produto');
 
     Route::middleware('auth')->group( function () {
-        Route::post('criar', 'ProdutoController@create')->name('criar-produto');
-        Route::post('{id}', 'ProdutoController@store')->name('produto');
-        Route::delete('{id}', 'ProdutoController@destroy')->name('produto');
-        Route::post('{id}/compra', 'ProdutoController@compra')->name('comprar-produto');
-        Route::post('{id}/venda', 'ProdutoController@venda')->name('vender-produto');
+        Route::post('criar', 'Model\ProdutoController@create')->name('criar-produto');
+        Route::post('{id}', 'Model\ProdutoController@store')->name('produto');
+        Route::delete('{id}', 'Model\ProdutoController@destroy')->name('produto');
+        Route::post('{id}/compra', 'Model\ProdutoController@compra')->name('comprar-produto');
+        Route::post('{id}/venda', 'Model\ProdutoController@venda')->name('vender-produto');
     });
 });
-

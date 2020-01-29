@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
  * Cria um usuário para autenticar na aplicação.
  * 
  * @author Ronaldo Stiene <rstiene27@gmail.com>
+ * @since 29/01/2020
  */
 class UsuariosSeeder extends Seeder
 {
@@ -22,12 +24,15 @@ class UsuariosSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('usuarios')->insert([
+        DB::table('users')->insert([
             [
-                'nome' => 'João da Silva',
+                'name' => 'João da Silva',
                 'email' => 'joao@email.com',
-                'senha' => Hash::make("senha"),
+                'password' => Hash::make("senha"),
+                'admin' => true,
             ],
         ]);
+
+        factory(User::class, 3)->create();
     }
 }

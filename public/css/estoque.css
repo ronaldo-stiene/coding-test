@@ -1,0 +1,41 @@
+/*
+ * Estilos da página de estoque.
+ *
+ * @author Ronaldo Stiene <rstiene27@gmail.com>
+ */
+
+/* Animação do aviso */
+.gg-pisca-animation {
+    animation: pisca 1s infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease-in-out;
+    position: relative;
+}
+@keyframes pisca {
+    from {
+        opacity: 0.5;
+    }
+    80% {
+        opacity: 1;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Altura dos detalhes do produto */
+@media (min-width: 768px) { 
+    .gg-produto-detalhes-h {
+        min-height: 7em;
+    }
+}
+@media (min-width: 992px) { 
+    .gg-produto-detalhes-h {
+        min-height: 10em;
+    }
+}
+
+/* Posição da imagem */
+.gg-posicao-imagem-estoque {
+    object-fit: contain;
+}

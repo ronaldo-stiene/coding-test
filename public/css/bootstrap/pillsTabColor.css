@@ -1,0 +1,16 @@
+/*
+ * Substituição das cores das Pills Tabs
+ *
+ * @source https://www.codeply.com/go/WJdJv71mhX/bootstrap-4-tab-pills-with-custom-color
+ */
+
+.nav-pills .active, .nav-pills .active:hover {
+    background-color: #343a40!important;
+}
+.nav-pills .nav-link:not(.active) {
+    color: #343a40;
+}
+.nav-pills .nav-link:not(.active):hover {
+    color: #121416;
+}
+

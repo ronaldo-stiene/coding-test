@@ -1,0 +1,65 @@
+/**
+ * -----------------------------------------------------------------------
+ * Layout de Cores
+ * -----------------------------------------------------------------------
+ * 
+ * @author Ronaldo Stiene <rstiene27@gmail.com>
+ * @since 29/01/2020
+ */
+
+
+/*************************************\
+|*        Cores de Background        *|
+\*************************************/
+
+/* Background Primário */
+.gg-bg-primary {
+    background-color: #d4e366!important;
+}
+
+/* Background Claro */
+.gg-bg-light {
+    background-color: #e0e8a2!important;
+}
+
+/* Background Transparente (Danger) */
+.gg-bg-transparent-danger {
+    background-color: rgba(255, 0, 0, 0.1);
+}
+
+
+/*************************************\
+|*          Cores de Texto           *|
+\*************************************/
+
+/* Texto Primário */
+.gg-txt-primary {
+    color: #d4e366!important;
+}
+
+
+/*************************************\
+|*          Cores de Borda           *|
+\*************************************/
+
+/* Borda Transparente */
+.gg-border {
+    border-color: rgb(0, 0, 0, 0.125)!important;
+}
+
+/* Borta Transparente Forte */
+.gg-border-heavy {
+    border-color: rgb(0, 0, 0, 0.350)!important;
+}
+
+/* Borda Primária */
+.gg-border-primary {
+    border: 1px solid #d4e366;
+}
+
+/* Borda Danger */
+.gg-border-danger {
+    border-color: #436940!important;
+}
+
+

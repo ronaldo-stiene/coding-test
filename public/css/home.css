@@ -1,0 +1,16 @@
+/*
+ * Estilos da página principal.
+ *
+ * @author Ronaldo Stiene <rstiene27@gmail.com>
+ */
+
+/* Seta dos itens */
+.gg-arrow-home {
+    transition: 0.5s;
+}
+.gg-arrow-home:hover, 
+.gg-arrow-home.hover {
+    transition: 0.5s;
+    padding-top: 1em;
+}
+
