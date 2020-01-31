@@ -61,6 +61,3 @@
 @section('css')
 <link rel="stylesheet" href="/css/produtos.css">
 @endsection
-
-@section('scripts')
-@endsection

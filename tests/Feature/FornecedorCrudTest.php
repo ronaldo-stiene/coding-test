@@ -337,8 +337,10 @@ class FornecedorCrudTest extends TestCase
 
     /**
      * Testa a exclusão de um fornecedor que contenha produtos.
+     * 
+     * @return void
      */
-    public function testExcluirFornecedorComProdutos()
+    public function testExcluirFornecedorComProdutos(): void
     {
         // Verifica a existência do fornecedor e do endereço.
         $this->assertDatabaseHas('fornecedores', ['id' => $this->fornecedor->id]);

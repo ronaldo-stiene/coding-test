@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * à um fornecedor através do relacionamento One To Many.
  * 
  * @author Ronaldo Stiene <rstiene27@gmail.com>
+ * @since 25/01/2020
  */
 class Produto extends Model
 {

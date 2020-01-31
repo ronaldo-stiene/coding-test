@@ -75,5 +75,4 @@
 
 @section('scripts')
 <script src="/js/fornecedorMask.js"></script>
-<script src="/js/fornecedores.js"></script>
 @endsection

@@ -146,11 +146,5 @@
 @endsection
 
 @section('scripts')
-<script>
-function setValorInput(elemento) {
-    var value = document.getElementById("gg-produto-quantidade-input").value;
-    $(elemento).val(value);
-}
-</script>
 <script src="/js/imagem-preview.js"></script>
 @endsection

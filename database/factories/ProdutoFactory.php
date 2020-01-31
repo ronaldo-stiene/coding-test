@@ -11,6 +11,7 @@ use Faker\Generator as Faker;
  * Gerador de dados dos Produtos.
  * 
  * @author Ronaldo Stiene <rstiene27@gmail.com>
+ * @since 25/01/2020
  */
 
 /**

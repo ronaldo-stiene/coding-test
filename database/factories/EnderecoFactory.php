@@ -12,6 +12,7 @@ use Faker\Provider\pt_BR\Address as BrAddress;
  * Gerador de dados dos Endereços dos fornecedores.
  * 
  * @author Ronaldo Stiene <rstiene27@gmail.com>
+ * @since 25/01/2020
  */
 
 /**

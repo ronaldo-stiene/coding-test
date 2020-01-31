@@ -12,6 +12,7 @@ use Illuminate\Database\Migrations\Migration;
  * Cria a tabela "fornecedores" no banco de dados.
  * 
  * @author Ronaldo Stiene <rstiene27@gmail.com>
+ * @since 25/01/2020
  */
 class CreateFornecedoresTable extends Migration
 {

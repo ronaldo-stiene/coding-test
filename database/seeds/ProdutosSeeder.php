@@ -14,6 +14,7 @@ use Illuminate\Http\UploadedFile;
  * Cria os produtos que serão usados na aplicação.
  * 
  * @author Ronaldo Stiene <rstiene27@gmail.com>
+ * @since 25/01/2020
  */
 class ProdutosSeeder extends Seeder
 {
@@ -25,10 +26,6 @@ class ProdutosSeeder extends Seeder
      */
     public function run()
     {
-        // Dados gerados pela fábrica.
-        // factory(Produto::class, 30)->create();
-
-        // Criação dos dados manualmente.
         $this->manualSeed();
     }
 

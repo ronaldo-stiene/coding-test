@@ -13,6 +13,7 @@ use Faker\Provider\pt_BR\PhoneNumber as BrPhoneNumber;
  * Gerador de dados dos Fornecedores.
  * 
  * @author Ronaldo Stiene <rstiene27@gmail.com>
+ * @since 25/01/2020
  */
 
 /**

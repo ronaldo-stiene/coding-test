@@ -12,6 +12,7 @@ use Illuminate\Database\Migrations\Migration;
  * Cria as chaves estrangeiras das tabelas "fornecedores", "produtos".
  * 
  * @author Ronaldo Stiene <rstiene27@gmail.com>
+ * @since 25/01/2020
  */
 class CreateForeignKeys extends Migration
 {

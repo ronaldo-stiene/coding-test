@@ -13,6 +13,7 @@ use Illuminate\Database\Migrations\Migration;
  * dos fornecedores.
  * 
  * @author Ronaldo Stiene <rstiene27@gmail.com>
+ * @since 25/01/2020
  */
 class CreateEnderecosTable extends Migration
 {

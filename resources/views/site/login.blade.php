@@ -27,9 +27,3 @@
     </section>
 </main>
 @endsection
-
-@section('css')
-@endsection
-
-@section('scripts')
-@endsection

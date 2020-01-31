@@ -2,14 +2,10 @@
  * Estilos da página de listagem dos fornecedores.
  *
  * @author Ronaldo Stiene <rstiene27@gmail.com>
+ * @since 30/01/2020
  */
 
 /* Display da visualização de produtos */
 .gg-fornecedor-item-produtos {
     display: none;
-}
-
-/* Posição da imagem */
-.gg-posicao-imagem-contain-fornecedor {
-    object-fit: contain;
 }
