@@ -1,0 +1,78 @@
+@extends('index')
+@section('titulo', 'Produtos | General Goods')
+
+@section('conteudo')
+<main class="container-md my-2 my-md-5">
+    <section>
+        <h2 class="text-dark text-center">Produtos</h2>
+    </section>
+    <section class="row {{(Auth::check()) ? "justify-content-around" : "justify-content-end"}} m-0 p-0 my-3">
+        @auth
+        <div class="col row justify-content-start align-items-center m-0 p-0">
+            <button type="button" class="btn gg-btn-outline-primary rounded" data-toggle="modal" data-target="#produtoModal">
+                <i class="fas fa-plus mx-2"></i>
+                Criar Produto
+            </button>
+            <div class="modal fade" id="produtoModal" tabindex="-1" role="dialog" aria-labelledby="produtoModalLabel" aria-hidden="true">
+                @include('componentes.modal.produto')
+            </div>
+        </div>
+        @endauth
+        <ul class="col-auto row justify-content-end align-items-center nav nav-pills m-0 my-2 p-0" id="pills-tab" role="tablist">
+            <li class="nav-item" data-toggle="tooltip" data-placement="top" title="Detalhes">
+                <a class="nav-link {{ ($visualizacao == "detalhes") ? "active" : "" }}" href="{{ route('produtos') }}?page={{ $produtos->currentPage() }}&view=detalhes">
+                    <i class="fas fa-th-list"></i>
+                </a>
+            </li>
+            <li class="nav-item" data-toggle="tooltip" data-placement="top" title="Lista">
+                <a class="nav-link {{ ($visualizacao == "lista") ? "active" : "" }}" href="{{ route('produtos') }}?page={{ $produtos->currentPage() }}&view=lista" >
+                    <i class="fas fa-list"></i>
+                </a>
+            </li>
+            <li class="nav-item" data-toggle="tooltip" data-placement="top" title="Grade">
+                <a class="nav-link {{ ($visualizacao == "grade") ? "active" : "" }}" href="{{ route('produtos') }}?page={{ $produtos->currentPage() }}&view=grade">
+                    <i class="fas fa-th"></i>
+                </a>
+            </li>
+        </ul>
+    </section>
+    <section class="my-3">
+        @include('componentes.alertas.error')
+        @include('componentes.alertas.sucesso')
+    </section>
+    <section class="row justify-content-center align-items-center m-0 mt-3 p-0">
+        @include('site.produtos.' . $visualizacao)
+    </section>
+    @if ($produtos->lastPage() > 1)
+    <section>
+        <nav>
+            <ul class="pagination justify-content-center">
+                <li class="page-item {{ ($produtos->onFirstPage()) ? "disabled" : ""}}">
+                    <a class="page-link" href="{{ $produtos->previousPageUrl() }}&view={{$visualizacao}}" tabindex="-1" aria-disabled="true">Anterior</a>
+                </li>
+                @for ($i = 1; $i <= $produtos->lastPage(); $i++)
+                @if ($i == $produtos->currentPage())
+                <li class="page-item active"><a class="page-link">{{$i}}</a></li>
+                @else
+                <li class="page-item"><a class="page-link" href="{{ $produtos->url($i) }}&view={{$visualizacao}}">{{$i}}</a></li>
+                @endif
+                @endfor
+                <li class="page-item {{ (! $produtos->hasMorePages()) ? "disabled" : ""}}">
+                    <a class="page-link" href="{{ $produtos->nextPageUrl() }}&view={{$visualizacao}}">Próximo</a>
+                </li>
+            </ul>
+        </nav>
+    </section>
+    @endif
+</main>
+@endsection
+
+@section('css')
+<link rel="stylesheet" href="/css/bootstrap/paginationColor.css">
+<link rel="stylesheet" href="/css/bootstrap/pillsTabColor.css">
+<link rel="stylesheet" href="/css/produtos.css">
+@endsection
+
+@section('scripts')
+<script src="/js/imagem-preview.js"></script>
+@endsection

@@ -1,7 +1,7 @@
-@if (Session::has('success'))
+@if (Session::has('user'))
     <script>
         function sucesso() {
-            alert('{!! Session::get('success') !!}');
+            alert('{!! Session::get('user') !!}');
         }
         sucesso();
     </script>

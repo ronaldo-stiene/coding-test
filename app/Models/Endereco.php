@@ -48,4 +48,14 @@ use Illuminate\Database\Eloquent\Model;
     {
         return Fornecedor::where('endereco_id', $this->id)->first();
     }
+
+    /**
+     * Retorna o CEP completo.
+     *
+     * @return string
+     */
+    public function getCep(): string
+    {
+        return str_pad( $this->cep, 8, 0, STR_PAD_LEFT);
+    }
 }

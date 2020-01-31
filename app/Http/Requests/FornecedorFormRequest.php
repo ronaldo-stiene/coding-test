@@ -35,14 +35,14 @@ class FornecedorFormRequest extends FormRequest
     {
         // @todo TIRAR O REQUIRED, PARA COLOCAR APENAS NA VIEW
         return [
-            'nome' => 'required|string|regex:/^[A-Za-z0-1 -]+$/|min:3',
+            'nome' => 'required|string|regex:/^[A-Za-z0-1À-ú -]+$/|min:3|max:50',
             'telefone' => 'required|numeric|digits_between:10,11',
             'cep' => 'required|numeric|digits:8',
-            'rua' => 'required|string|min:3',
+            'rua' => 'required|string|min:3|max:50',
             'numero' => 'required|string|alpha_num|max:6',
-            'complemento' => 'string|nullable',
-            'cidade' => 'required|string|regex:/^[A-Za-z0-1 -]+$/|min:3',
-            'estado' => 'required|string|alpha|max:2',
+            'complemento' => 'string|nullable|max:20',
+            'cidade' => 'required|string|regex:/^[A-Za-z0-1À-ú -]+$/|min:3|max:50',
+            'estado' => 'required|string|alpha|size:2',
         ];
     }
 
@@ -63,6 +63,7 @@ class FornecedorFormRequest extends FormRequest
             'numeric' => 'O campo :attribute deve ter apenas números.',
             'min' => 'O campo :attribute precisa ter pelo menos :min caracteres.',
             'max' => 'O campo :attribute deve ter até :max caracteres.',
+            'size' => 'O campo :attribute deve ter :size caracteres.',
             'digits' => 'O campo :attribute deve ter :digits dígitos.',
             'digits_between' => 'O campo :attribute deve ter entre :min e :max dígitos.',
             'regex' => 'O campo :attribute possuí caracteres não permitidos.',

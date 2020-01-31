@@ -1,7 +1,7 @@
 @foreach ($produtos as $produto)
-<div class="row justify-content-between m-0 my-2 gg-btn-outline-light">
+<div class="col-12 row justify-content-between m-0 p-0 my-2 gg-btn-outline-light">
     <a class="col-2 row justify-content-center border-right bg-white rounded m-0 p-0 p-3 h-auto" href="{{ route('produto', ['id' => $produto->id]) }}">
-            <img src="/storage/img/{{$produto->imagem}}" alt="Imagem da {{$produto->nome}}" class="gg-posicao-imagem-estoque gg-max-w-2">
+            <img src="/storage/img/{{$produto->imagem}}" alt="Imagem da {{$produto->nome}}" class="gg-posicao-imagem-contain gg-max-w-2">
     </a>
     <div class="col p-0 ml-3 gg-h-5">
         <div class="row justify-content-start m-0 my-1 my-md-2">
@@ -15,10 +15,16 @@
                     {{$produto->nome}}
                 </a>
             </h6>
-            @if ($produto->quantidade <= 3) 
+            @if ($produto->quantidade <= 3 && $produto->quantidade !== 0) 
             <small class="text-danger my-auto mx-2 gg-pisca-animation">
                 <i class="fas fa-exclamation-circle"></i>
                 <span class="d-none d-md-inline">Produto prestes a acabar!</span>
+            </small>
+            @endif
+            @if ($produto->quantidade === 0) 
+            <small class="text-danger my-auto mx-2 gg-pisca-animation">
+                <i class="fas fa-exclamation-circle"></i>
+                <span class="d-none d-md-inline">Produto esgotado!</span>
             </small>
             @endif
         </div>

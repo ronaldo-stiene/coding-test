@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\Helper;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -56,25 +57,6 @@ class Produto extends Model
      */
     public static function gerarNomeDaImagem(string $nome): string
     {
-        return strtolower(self::removerAcentos($nome)) . ".jpg";
-    }
-
-    /**
-     * Função que remove os acentos de uma string.
-     *
-     * @param string $string
-     * @return string
-     * 
-     * @author Tiago
-     * @author Ronaldo Stiene <rstiene27@gmail.com>
-     * @source https://www.linhadecomando.com/php/php-funcao-para-retirar-acentos
-     */
-    private static function removerAcentos(string $string): string
-    {
-        $acentos  =  'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿŔŕ';
-        $sem_acentos  =  'aaaaaaaceeeeiiiidnoooooouuuuybsaaaaaaaceeeeiiiidnoooooouuuyybyRr';
-        $string = strtr(utf8_decode($string), utf8_decode($acentos), $sem_acentos);
-        $string = str_replace(" ", "", $string);
-        return utf8_decode($string);
+        return strtolower(Helper::removerAcentos($nome)) . ".jpg";
     }
 }

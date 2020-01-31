@@ -2,15 +2,21 @@
     @foreach ($produtos as $produto)
     <div class="card mx-2 col p-0 my-2 gg-btn-outline-light">
         <div class="card-img-top bg-white rounded row justify-content-center m-0 p-2">
-            <img src="/storage/img/{{$produto->imagem}}" alt="Imagem da {{$produto->nome}}" class="gg-posicao-imagem-estoque gg-max-h-5">
+            <img src="/storage/img/{{$produto->imagem}}" alt="Imagem da {{$produto->nome}}" class="gg-posicao-imagem-contain gg-max-h-5">
         </div>
         <div class="card-body">
             <div class="d-flex flex-column justify-content-center align-items-center">
                 <h6 class="card-title mb-0">{{$produto->nome}}</h6>
-                @if ($produto->quantidade <= 3) 
-                <small class="text-danger gg-pisca-animation">
+                @if ($produto->quantidade <= 3 && $produto->quantidade !== 0) 
+                <small class="text-danger my-auto mx-2 gg-pisca-animation">
                     <i class="fas fa-exclamation-circle"></i>
                     <span class="d-none d-md-inline">Produto prestes a acabar!</span>
+                </small>
+                @endif
+                @if ($produto->quantidade === 0) 
+                <small class="text-danger my-auto mx-2 gg-pisca-animation">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <span class="d-none d-md-inline">Produto esgotado!</span>
                 </small>
                 @endif
             </div>

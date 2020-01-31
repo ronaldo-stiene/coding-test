@@ -34,8 +34,3 @@
         min-height: 10em;
     }
 }
-
-/* Posição da imagem */
-.gg-posicao-imagem-estoque {
-    object-fit: contain;
-}

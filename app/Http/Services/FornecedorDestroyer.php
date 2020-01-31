@@ -60,7 +60,7 @@ class FornecedorDestroyer
     private function verificarProdutos(Fornecedor $fornecedor): void
     {
         if ($fornecedor->produtos->count() > 0) {
-            throw new \Exception("Existe produtos comprados por esse fornecedor", 1);
+            throw new \Exception("Existe produtos comprados por esse fornecedor. Remova-os ou altere seus fornecedores antes de realizar a exclusão.", 1);
         }
     }
 }

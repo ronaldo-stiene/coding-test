@@ -5,9 +5,12 @@
     <div class="card card-body">
         <form action="{{route('criar-user')}}" method="POST">
             @csrf
-            <input type="text" class="form-control col my-2" name="name" placeholder="Nome">
-            <input type="text" class="form-control col my-2" name="email" placeholder="E-Mail">
-            <input type="password" class="form-control col my-2" name="password" placeholder="Senha">
+            <input type="text" class="form-control col my-2" name="name" placeholder="Nome" minlength="3" maxlength="50" required>
+            <input type="text" class="form-control col my-2" name="email" placeholder="E-Mail" maxlength="50" required>
+            <input type="password" class="form-control col my-2" name="password" placeholder="Senha" minlength="4" maxlength="20" required>
+            <small id="passwordHelpBlock" class="form-text text-muted">
+                A senha deve ter entre 4 e 20 caracteres.
+            </small>
             @if (Auth::user()->admin)
             <div class="form-group form-check">
                 <input type="checkbox" class="form-check-input" name="admin" value="true" id="tl-checkbox-admin">

@@ -58,4 +58,40 @@ class Fornecedor extends Model
     {
         return Endereco::find($this->endereco_id);
     }
+
+    /**
+     * Retorna o telefone formatado.
+     *
+     * @return string
+     */
+    public function getTelefone(): string
+    {
+        return preg_replace('/(\d{2})(\d{4,5})(\d{4})/', '(${1}) ${2}-${3}', $this->telefone);
+    }
+
+    /**
+     * Retorna o CEP formatado.
+     *
+     * @return string
+     */
+    public function getCep(): string
+    {
+        return preg_replace( '/(\d{5})(\d{3})/', '${1}-${2}', $this->getEndereco()->getCep() );
+    }
+    
+    /**
+     * Retorna o endereço formatado.
+     *
+     * @return string
+     */
+    public function getEnderecoCompleto(): string
+    {
+        $endereco = $this->getEndereco();
+        return ucfirst($endereco->rua) . ", " .
+            $endereco->numero . 
+            (($endereco->complemento) ? ", " . $endereco->complemento : "" ) . " - " .
+            ucfirst($endereco->cidade) . " - " .
+            strtoupper($endereco->estado) . ', ' . 
+            $this->getCep();
+    }
 }

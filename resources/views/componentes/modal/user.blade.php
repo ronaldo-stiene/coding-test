@@ -26,10 +26,10 @@
             </div>
             <div>
                 <div class="row justify-content-end m-0 p-0">
-                    <button class="btn btn-link text-decoration-none text-dark gg-alterar-user-label" onclick="toggleEditar('label')">
+                    <button class="btn btn-link text-decoration-none text-dark gg-alterar-user-label" onclick="toggleHidden('.gg-alterar-user-input', '.gg-alterar-user-label')">
                         Editar
                     </button>
-                    <button class="btn btn-link text-decoration-none text-dark gg-alterar-user-input" hidden onclick="toggleEditar('input')">
+                    <button class="btn btn-link text-decoration-none text-dark gg-alterar-user-input" hidden onclick="toggleHidden('.gg-alterar-user-label', '.gg-alterar-user-input')">
                         Cancelar
                     </button>
                 </div>
@@ -57,15 +57,3 @@
         </div>
     </div>
 </div>
-<script>
-    function toggleEditar(elemento) {
-        if (elemento == 'input') {
-            $('.gg-alterar-user-input').attr('hidden', true)
-            $('.gg-alterar-user-label').attr('hidden', false)
-        }
-        if (elemento == 'label') {
-            $('.gg-alterar-user-input').attr('hidden', false)
-            $('.gg-alterar-user-label').attr('hidden', true)
-        }
-    }
-</script>

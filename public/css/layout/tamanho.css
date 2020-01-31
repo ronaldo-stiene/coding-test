@@ -12,9 +12,28 @@
 |*              Tamanhos             *|
 \*************************************/
 
+/* Geral */
+.gg-size-4 {
+    max-height: 1.5em;
+    max-width: 1.5em;
+}
+.gg-size-7 {
+    height: 6em;
+    width: 6em;
+}
+
 /* Altura */
+.gg-h-1 {
+    height: 30px;
+}
+.gg-h-4 {
+    height: 1.5em;
+}
 .gg-h-6 {
     height: 4em;
+}
+.gg-h-7 {
+    height: 6em;
 }
 
 
@@ -37,6 +56,9 @@
 }
 
 /* Altura Máxima */
+.gg-max-h-1 {
+    max-height: 30px;
+}
 .gg-max-h-2 {
     max-height: 50px;
 }

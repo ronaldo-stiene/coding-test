@@ -33,9 +33,9 @@ class FornecedorController extends Controller
      */
     public function index(Request $request): View
     {
-        $fornecedores = Fornecedor::all();
-
-        return view('site.fornecedores', compact('fornecedores'));
+        $fornecedores = Fornecedor::paginate(15);
+        $visualizacao = ($request->view) ? $request->view : 'detalhes';
+        return view('site.fornecedores', compact('fornecedores', 'visualizacao'));
     }
 
     /**
@@ -75,9 +75,10 @@ class FornecedorController extends Controller
             ]
         );
 
-        // @todo Exibir mensagem de sucesso.
+        $mensagem = 'Fornecedor ' . $fornecedor->nome . ' criado com sucesso!';
 
-        return redirect()->route('home');
+        return redirect()->back()
+            ->with('success', $mensagem);
     }
 
     /**
@@ -93,9 +94,10 @@ class FornecedorController extends Controller
 
         $fornecedor = $updater->atualizarFornecedor($request->id, $validated);
 
-        // @todo Exibir mensagem de sucesso.
+        $mensagem = 'Dados do fornecedor ' . $fornecedor->nome . ' foram alterados com sucesso.';
 
-        return redirect()->route('home');
+        return redirect()->back()
+            ->with('success', $mensagem);
     }
 
     /**
@@ -111,13 +113,16 @@ class FornecedorController extends Controller
 
             $nome = $destroyer->removerFornecedor($request->id);
 
-            // @todo Exibir mensagem de sucesso.
+            $mensagem = 'Fornecedor ' . $nome . ' excluído com sucesso.';
 
-            return redirect()->route('home');
+            return redirect()->route('fornecedores')
+                ->with('success', $mensagem);
 
         } catch (\Exception $e) {
 
-            return redirect()->route('home')
+            $fornecedor = Fornecedor::find($request->id);
+            
+            return redirect()->route('fornecedor', ['id' => $fornecedor->id])
                 ->withErrors($e->getMessage());
 
         }

@@ -33,9 +33,10 @@ class ProdutoController extends Controller
      */
     public function index(Request $request): View
     {
-        $produtos = Produto::all();
+        $produtos = Produto::paginate(15);
+        $visualizacao = ($request->view) ? $request->view : 'detalhes';
 
-        return view('site.produtos', compact('produtos'));
+        return view('site.produtos', compact('produtos', 'visualizacao'));
     }
 
     /**
@@ -68,9 +69,10 @@ class ProdutoController extends Controller
             $validated['fornecedor'],
         );
 
-        // @todo Exibir mensagem de sucesso.
+        $mensagem = 'Produto ' . $produto->nome . ' criado com sucesso!';
 
-        return redirect()->route('home');
+        return redirect()->back()
+            ->with('success', $mensagem);
     }
 
     /**
@@ -86,9 +88,10 @@ class ProdutoController extends Controller
 
         $produto = $updater->atualizarProduto($request->id, $validated);
 
-        // @todo Exibir mensagem de sucesso.
+        $mensagem = 'Dados do produto ' . $produto->nome . ' foram alterados com sucesso.';
 
-        return redirect()->route('home');
+        return redirect()->back()
+            ->with('success', $mensagem);
     }
 
     /**
@@ -102,46 +105,9 @@ class ProdutoController extends Controller
     {
         $nome = $destroyer->removerProduto($request->id);
 
-        // @todo Exibir mensagem de sucesso.
+        $mensagem = 'Produto ' . $nome . ' excluído com sucesso.';
 
-        return redirect()->route('home');
-    }
-
-    /**
-     * Controla a compra de novos produtos.
-     *
-     * @param Request $request
-     * @return RedirectResponse
-     */
-    public function comprar(Request $request): RedirectResponse
-    {
-        $validated = $request->validated();
-
-        $produto = Produto::find($request->id);
-        $produto->quantidade = $produto->quantidade + $validated['compra'];
-        $produto->save();
-
-        // @todo Exibir mensagem de sucesso.
-
-        return redirect()->route('home');
-    }
-
-    /**
-     * Controla a venda de novos produtos.
-     *
-     * @param Request $request
-     * @return RedirectResponse
-     */
-    public function vender(Request $request): RedirectResponse
-    {
-        $validated = $request->validated();
-
-        $produto = Produto::find($request->id);
-        $produto->quantidade = $produto->quantidade - $validated['venda'];
-        $produto->save();
-
-        // @todo Exibir mensagem de sucesso.
-
-        return redirect()->route('home');
+        return redirect()->route('produtos')
+            ->with('success', $mensagem);
     }
 }

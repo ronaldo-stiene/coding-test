@@ -31,8 +31,7 @@ class EstoqueController extends Controller
      */
     public function index(Request $request): View
     {
-        $produtos = Produto::paginate(15);
-        $visualizacao = ($request->view) ? $request->view : 'detalhes';
-        return view('site.estoque', compact('produtos', 'visualizacao'));
+        $produtos = Produto::all();
+        return view('site.estoque', compact('produtos'));
     }
 }

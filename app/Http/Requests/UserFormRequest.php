@@ -42,9 +42,9 @@ class UserFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'string|regex:/^[A-Za-z0-1À-ú -]+$/|min:3',
-            'email' => 'string|email',
-            'password' => 'string|min:5',
+            'name' => 'string|regex:/^[A-Za-z0-1À-ú -]+$/|min:3|max:50',
+            'email' => 'string|email|max:50',
+            'password' => 'string|min:5|max:20',
         ];
     }
 
@@ -62,6 +62,8 @@ class UserFormRequest extends FormRequest
             'email' => 'O e-mail fornecido não é válido.',
             'name.min' => 'O campo :attribute precisa ter pelo menos :min caracteres.',
             'password.min' => 'A senha precisa ter pelo menos :min caracteres.',
+            'max' => 'O campo :attribute precisa ter até :max caracteres.',
+            'password.max' => 'A senha precisa ter até :max caracteres.',
         ];
     }
 }

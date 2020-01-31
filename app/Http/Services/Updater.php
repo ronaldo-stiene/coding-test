@@ -33,7 +33,7 @@ class Updater
             $campo = $atributo;
         }
         
-        if (isset($dados[$campo])) {
+        if (isset($dados[$campo]) && $entidade->$atributo !== $dados[$campo]) {
             $entidade->$atributo = $dados[$campo];
         }
     }

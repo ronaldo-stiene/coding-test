@@ -28,8 +28,8 @@ class ProdutoUpdater extends Updater
     {
         $produto = Produto::find($id);
 
-        parent::atualizarCampo('nome', $produto, $dados);
         $this->alterarNomeDaImagem($dados, $produto);
+        parent::atualizarCampo('nome', $produto, $dados);
 
         $this->alterarImagem($dados, $produto);
         parent::atualizarCampo('quantidade', $produto, $dados);
@@ -73,6 +73,9 @@ class ProdutoUpdater extends Updater
     private function alterarNomeDaImagem(array $dados, Produto $produto): void
     {
         if (isset($dados['nome'])) {
+            if ($dados['nome'] === $produto->nome) {
+                return;
+            }
             $nome = Produto::gerarNomeDaImagem($dados['nome']);
             Storage::disk('public')->move("img/" . $produto->imagem, "img/" . $nome);
             $produto->imagem = $nome;

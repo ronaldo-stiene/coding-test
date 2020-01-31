@@ -35,7 +35,7 @@ class ProdutoFormRequest extends FormRequest
     {
         // @todo TIRAR O REQUIRED, PARA COLOCAR APENAS NA VIEW
         return [
-            'nome' => 'string|regex:/^[A-Za-z0-1 -]+$/|min:3',
+            'nome' => 'string|regex:/^[A-Za-z0-1À-ú -]+$/|min:3|max:50',
             'imagem' => 'file|image|max:2048',
             'quantidade' => 'numeric|min:0',
             'fornecedor' => 'integer|numeric|exists:fornecedores,id',
@@ -54,6 +54,7 @@ class ProdutoFormRequest extends FormRequest
             'integer' => 'O campo :attribute precsa ser do tipo inteiro.',
             'numeric' => 'O campo :attribute deve ter apenas números.',
             'nome.min' => 'O campo :attribute precisa ter pelo menos :min caracteres.',
+            'nome.max' => 'O campo :attribute precisa ter pelo menos :max caracteres.',
             'quantidade.min' => 'O campo :attribute precisa ter uma quantidade de no minímo :min.',
             'regex' => 'O campo :attribute possuí caracteres não permitidos.',
             'exists' => 'O campo :attribute não possuí um valor na coluna :column da tabela :table.',

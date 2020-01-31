@@ -83,7 +83,7 @@ class UserControler extends Controller
         $mensagem = 'Usuário ' . $user->name . ' <' . $user->email . '> foi criado!';
 
         return redirect()->back()
-            ->with('success', $mensagem);
+            ->with('user', $mensagem);
     }
 
     /**
@@ -103,7 +103,7 @@ class UserControler extends Controller
         $mensagem .= '> Email: ' . $user->email . '\n';
 
         return redirect()->back()
-            ->with('success', $mensagem);
+            ->with('user', $mensagem);
     }
 
     /**
@@ -119,7 +119,7 @@ class UserControler extends Controller
         $mensagem = 'O usuário ' . $nome . ' foi excluído.';
 
         return redirect()->back()
-            ->with('success', $mensagem);
+            ->with('user', $mensagem);
     }
 
     /**
@@ -138,7 +138,7 @@ class UserControler extends Controller
         $mensagem .= '> ' . $novaSenha;
 
         return redirect()->back()
-            ->with('success', $mensagem);
+            ->with('user', $mensagem);
     }
 
     /**
@@ -156,7 +156,7 @@ class UserControler extends Controller
             $mensagem = 'A senha foi alterada.';
 
             return redirect()->back()
-                ->with('success', $mensagem);
+                ->with('user', $mensagem);
         } catch (\Exception $e) {
             return redirect()->back()
                 ->withErrors($e->getMessage(), 'user');

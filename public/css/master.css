@@ -9,3 +9,7 @@
     font-family: 'Lobster', cursive;
 }
 
+/* Posição da imagem */
+.gg-posicao-imagem-contain {
+    object-fit: contain;
+}
